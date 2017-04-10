@@ -1,10 +1,10 @@
-# bisu-row-search
+# bisu-react-row-search
 
 [![Travis][build-badge]][build]
 [![npm package][npm-badge]][npm]
 [![Coveralls][coveralls-badge]][coveralls]
 
-Describe bisu-row-search here.
+Describe bisu-react-row-search here.
 
 [build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
 [build]: https://travis-ci.org/user/repo

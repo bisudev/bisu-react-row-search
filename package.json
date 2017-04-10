@@ -1,7 +1,7 @@
 {
-  "name": "bisu-row-search",
+  "name": "bisu-react-row-search",
   "version": "1.0.0",
-  "description": "bisu-row-search React component",
+  "description": "bisu-react-row-search React component",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -11,26 +11,44 @@
     "umd"
   ],
   "scripts": {
-    "build": "nwb build-react-component",
+    "build": "nwb build-react-component --copy-files",
     "clean": "nwb clean-module && npm clean-demo",
-    "start": "nwb serve-react-demo",
+    "start": "json-server ./demo/src/db.json --port 1500 & nwb serve-react-demo",
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server"
+    "test:watch": "nwb test-react --server",
+    "prepublish": "npm run build"
   },
   "dependencies": {},
   "peerDependencies": {
     "react": "15.x"
   },
   "devDependencies": {
+    "bisu-react-form-error": "1.0.2",
+    "bisu-react-input": "1.0.2",
+    "bisu-react-modal": "1.0.4",
+    "bisu-react-search-modal": "1.0.1",
+    "bootstrap-sass": "3.3.7",
+    "immutable": "3.8.1",
     "nwb": "0.15.x",
-    "react": "^15.5.1",
-    "react-dom": "^15.5.1"
+    "nwb-sass": "0.7.1",
+    "prop-types": "15.5.6",
+    "react": "15.4.2",
+    "react-bootstrap": "0.30.8",
+    "react-dom": "15.4.2",
+    "react-gridforms": "1.0.2",
+    "react-icons": "2.2.3",
+    "react-redux": "5.0.4",
+    "react-redux-form": "1.9.0",
+    "redux": "3.6.0",
+    "redux-api-middleware": "1.0.2",
+    "redux-thunk": "2.2.0",
+    "validator": "7.0.0"
   },
   "author": "",
   "homepage": "",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/bisudev/bisu-react-row-search.git",
   "keywords": [
     "react-component"
   ]

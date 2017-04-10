@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { Provider, connect } from 'react-redux'
 import {render} from 'react-dom'
 
-import Component from '../../src'
+import configureStore from './configure-store'
+const store = configureStore()
 
-let Demo = React.createClass({
-  render() {
-    return <div>
-      <h1>bisu-row-search Demo</h1>
-      <Component/>
-    </div>
-  }
-})
+import Demo from './demo'
 
-render(<Demo/>, document.querySelector('#demo'))
+const Main = () => (
+  <Provider store={store}>
+    <Demo />
+  </Provider>
+)
+
+render(<Main/>, document.querySelector('#demo'))
