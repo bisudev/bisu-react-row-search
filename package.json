@@ -1,6 +1,6 @@
 {
   "name": "bisu-react-row-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "bisu-react-row-search React component",
   "main": "lib/index.js",
   "module": "es/index.js",

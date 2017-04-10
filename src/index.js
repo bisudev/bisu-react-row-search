@@ -18,6 +18,7 @@ class BisuReactRowSearch extends Component {
     super(props)
     this.state = {
       openSearch: false,
+      filtered: props.searchResults,
     }
   }
 
@@ -35,9 +36,24 @@ class BisuReactRowSearch extends Component {
     dispatch(actions.focus(model1))
   }
 
+  _fuzzySearch = (term, setFirstResult) => {
+    const { searchResults } = this.props
+    const regex = new RegExp(term, 'i')
+    const filtered = searchResults.filter((item) => item.get('code').search(regex) > -1 || item.get('name').search(regex) > -1)
+    this.setState({filtered})
+    if (setFirstResult === true) {
+      if (filtered.size > 0) {
+        this._onSelectSearchItem(filtered.get(0))
+      } else {
+        this._reset()
+      }
+    }
+  }
+
   // F10 - keyCode = 121
   _onKeyDown = (e) => {
-    const { dispatch, onSearch } = this.props
+    const { filtered } = this.state
+    const { dispatch, onSearch, isOffline, searchResults } = this.props
 
     if (e.keyCode === 121) {
       // show search
@@ -47,25 +63,39 @@ class BisuReactRowSearch extends Component {
       e.preventDefault()
       // search directly
       const value = trim(e.target.value)
-      this.props.dispatch(this.props.onSearch(value))
-        .then((res) => {
-          if (!res.error) {
-            const result = fromJS(res.payload || [])
-            if (result.size > 0) {
-              this._onSelectSearchItem(result.get(0))
+      if (!value) {
+        this._reset()
+        return true
+      }
+      if (isOffline) {
+        // fuzzy search
+        this._fuzzySearch(value, true)
+      } else {
+        this.props.dispatch(this.props.onSearch(value))
+          .then((res) => {
+            if (!res.error) {
+              const result = fromJS(res.payload || [])
+              if (result.size > 0) {
+                this._onSelectSearchItem(result.get(0))
+              } else {
+                this._reset()
+              }
             } else {
               this._reset()
             }
-          } else {
-            this._reset()
-          }
-        })
+          })
+      }
     }
   }
 
   // fires on Search
   _onSearch = (term) => {
-    this.props.dispatch(this.props.onSearch(term))
+    const { isOffline, dispatch, onSearch } = this.props
+    if (isOffline) {
+      this._fuzzySearch(term)
+    } else {
+      dispatch(onSearch(term))
+    }
   }
 
   // on select search result item
@@ -73,7 +103,7 @@ class BisuReactRowSearch extends Component {
     const { dispatch, model, model1, model2 } = this.props
     dispatch(actions.change(model, item.get('id')))
     dispatch(actions.change(model1, item.get('code')))
-    dispatch(actions.change(model2, item.get('name')))
+    dispatch(actions.change(model2, `[${item.get('code')}] - ${item.get('name')}`))
     this._closeSearch()
   }
 
@@ -85,22 +115,25 @@ class BisuReactRowSearch extends Component {
   }
 
   render() {
-    const { openSearch } = this.state
-    const { placeholder, model, model1, model2, label1, label2, required, autoFocus, searchResults } = this.props
+    const { openSearch, filtered } = this.state
+    const { placeholder, model, model1, model2, label1, label2, required, autoFocus, searchResults, isOffline, disabled } = this.props
+
+    const results = isOffline ? filtered : searchResults
 
     return (
       <Row className="bisu--react-row-search">
-        <Field span="1">
+        <Field span="1" data-disabled={disabled ? 'true' : ''}>
           <label htmlFor={model1}>{label1} {required && <span className="req">*</span>}</label>
           <InputGroup>
             <IButton>
-              <button type="button" onClick={this._openSearch} tabIndex="-1" className="btn-icon"><SearchIcon /></button>
+              <button type="button" onClick={this._openSearch} tabIndex="-1" disabled={disabled} className="btn-icon"><SearchIcon /></button>
             </IButton>
             <Control.text
               model={model1}
               className="form-control"
               onKeyDown={this._onKeyDown}
               autoFocus={autoFocus}
+              disabled={disabled}
             />
             {errBlock(model)}
           </InputGroup>
@@ -114,7 +147,7 @@ class BisuReactRowSearch extends Component {
           <Search
             placeholder={placeholder}
             isOpen={openSearch}
-            results={searchResults}
+            results={results}
             handleClose={this._closeSearch}
             onSubmit={this._onSearch}
             onSelectItem={this._onSelectSearchItem}
@@ -132,9 +165,10 @@ BisuReactRowSearch.propTypes = {
   model2: string,
   label1: string,
   label2: string,
-  autoFocus: bool,
-  onSearch: func,
   searchResults: object,
+  onSearch: func,
+  autoFocus: bool,
+  isOffline: bool,
 }
 
 export default connect()(BisuReactRowSearch)

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { fromJS } from 'immutable'
 import { Form } from 'react-redux-form/immutable'
 import { Fieldset, Row, Field } from 'react-gridforms'
 import Modal from 'bisu-react-modal'
 
-import { searchStudent } from './actions'
+import { searchStudent, fetchStudents } from './actions'
 import ThisComponent from '../../src'
 import './demo.scss'
 
@@ -20,7 +21,19 @@ class Demo extends Component {
     super(props)
     this.state = {
       showModal: false,
+      offlineList: fromJS([]),
     }
+  }
+
+  componentDidMount() {
+    this.props.dispatch(fetchStudents())
+      .then((res) => {
+        if (!res.error) {
+          this.setState({
+            offlineList: fromJS(res.payload || []),
+          })
+        }
+      })
   }
 
   _showModal = () => {
@@ -64,6 +77,55 @@ class Demo extends Component {
     )
   }
 
+  _renderForm2() {
+    const { offlineList } = this.state
+
+    return (
+      <Form model="formState2" onSubmit={this._onSubmit} validators={validators} className="grid-form">
+        <Fieldset legend="Form 2">
+          <ThisComponent
+            placeholder="Search Student ID or Last Name"
+            model="formState2.student_id"
+            model1="formState2.student_id_input"
+            model2="formState2.student_name"
+            label1="Student ID"
+            label2="Student Name"
+            searchResults={offlineList}
+            isOffline
+            required
+          />
+        </Fieldset>
+        <hr />
+        <button type="submit" className="btn btn-primary">Submit</button>
+      </Form>
+    )
+  }
+
+  _renderForm3() {
+    const { offlineList } = this.state
+
+    return (
+      <Form model="formState2" onSubmit={this._onSubmit} validators={validators} className="grid-form">
+        <Fieldset legend="Form 2" disabled>
+          <ThisComponent
+            placeholder="Search Student ID or Last Name"
+            model="formState2.student_id"
+            model1="formState2.student_id_input"
+            model2="formState2.student_name"
+            label1="Student ID"
+            label2="Student Name"
+            searchResults={offlineList}
+            isOffline
+            disabled
+            required
+          />
+        </Fieldset>
+        <hr />
+        <button type="submit" className="btn btn-primary">Submit</button>
+      </Form>
+    )
+  }
+
   render() {
     const { showModal } = this.state
 
@@ -75,6 +137,12 @@ class Demo extends Component {
           <Modal isOpen={showModal} handleClose={this._hideModal}>
             {this._renderForm()}
           </Modal>
+          <hr />
+          <h2>Offline Mode (Fuzzy search)</h2>
+          {this._renderForm2()}
+          <hr />
+          <h2>Disabled</h2>
+          {this._renderForm3()}
         </div>
         <button type="button" onClick={this._showModal} className="btn btn-info">Open this form in modal</button>
       </div>

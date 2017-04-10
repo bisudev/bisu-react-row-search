@@ -6,6 +6,9 @@
   .form-control:focus {
     box-shadow: none;
   }
+  .form-control[disabled] {
+    background-color: transparent;
+  }
   .input-group-btn .btn-icon {
     font-size: 24px;
     padding: 0 10px;
@@ -15,10 +18,11 @@
     color: $gray-light;
 
     &:focus,
-    &:hover {
+    &:hover,
+    not(:disabled) {
       color: #000;
     }
-    &:active {
+    &:active, not(:disabled) {
       transform: translateY(1px);
     }
   }
