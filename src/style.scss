@@ -1,29 +1,32 @@
 .bisu--react-row-search {
+  .input-group-btn {
+    font-size: 24px;
+
+    button {
+      border: 0;
+      padding: 0;
+      padding-right: 10px;
+      outline: 0;
+      background-color: transparent;
+      color: $gray-light;
+      display: block;
+      margin-top: -15px;
+
+      svg {
+        margin-top: 10px;
+      }
+
+      &:focus:enabled,
+      &:hover:enabled {
+        color: #000;
+      }
+      &:active:enabled {
+        transform: translateY(1px);
+      }
+    }
+  }
+
   .display .form-control {
     color: $brand-primary;
-  }
-  .form-control,
-  .form-control:focus {
-    box-shadow: none;
-  }
-  .form-control[disabled] {
-    background-color: transparent;
-  }
-  .input-group-btn .btn-icon {
-    font-size: 24px;
-    padding: 0 10px;
-    outline: 0;
-    border: 0;
-    background-color: transparent;
-    color: $gray-light;
-
-    &:focus,
-    &:hover,
-    not(:disabled) {
-      color: #000;
-    }
-    &:active, not(:disabled) {
-      transform: translateY(1px);
-    }
   }
 }

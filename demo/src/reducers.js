@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { createForms } from 'react-redux-form/immutable'
 
-import student, { formState, formState2 } from './reducer1'
+import student, { formState, formState2, searchState } from './reducer1'
 
 export default combineReducers({
   student,
@@ -9,5 +9,6 @@ export default combineReducers({
   ...createForms({
     formState,
     formState2,
-  })
+    searchState,
+  }),
 })

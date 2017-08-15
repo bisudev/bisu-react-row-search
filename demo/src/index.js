@@ -1,16 +1,14 @@
-import React, { Component } from 'react'
-import { Provider, connect } from 'react-redux'
-import {render} from 'react-dom'
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import Demo from './demo'
 
 import configureStore from './configure-store'
 const store = configureStore()
 
-import Demo from './demo'
-
-const Main = () => (
+const Main = () =>
   <Provider store={store}>
     <Demo />
   </Provider>
-)
 
-render(<Main/>, document.querySelector('#demo'))
+render(<Main />, document.querySelector('#demo'))

@@ -1,27 +1,8 @@
-# bisu-react-row-search
-
-[![Travis][build-badge]][build]
-[![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
-
-Describe bisu-react-row-search here.
-
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
-
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
-
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
-
-```js
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fromJS } from 'immutable'
 import { Form, actions } from 'react-redux-form/immutable'
 import { Fieldset } from 'tforms'
-
 import SearchModal, {
   ResultWrapper,
   ResultHeader,
@@ -29,42 +10,36 @@ import SearchModal, {
   ResultSpan,
 } from 'bisu-react-search-modal'
 
-import ThisComponent from '../../src'
-import SearchResultItem from './search-result-item'
 import { searchStudent } from './actions'
+import SearchResultItem from './search-result-item'
+import ThisComponent from '../../src'
+import './demo.scss'
 
-const intRequired = val => {
-  return val > 0
-}
-const validators = {
-  student_id: { intRequired },
-}
-
-class DemoAjax extends Component {
+class Demo extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      openSearch: false,
+      openSearch1: false,
     }
   }
 
-  _onSubmit = payload => {
-    console.log('submit', payload.toJS())
+  componentDidMount() {
+    this.props.dispatch()
   }
 
-  _openSearch = () => {
-    this.setState({ openSearch: true })
+  _openSearch1 = () => {
+    this.setState({ openSearch1: true })
   }
 
-  _closeSearch = () => {
-    this.setState({ openSearch: false })
+  _closeSearch1 = () => {
+    this.setState({ openSearch1: false })
   }
 
-  _onSearch = search => {
+  _onSearch1 = search => {
     this.props.dispatch(searchStudent(search.get('q')))
   }
 
-  _onDirectSearch = term => {
+  _onDirectSearch1 = term => {
     this.props.dispatch(searchStudent(term)).then(res => {
       if (res.payload.data && res.payload.data.length > 0) {
         this._onSelectItem(fromJS(res.payload.data[0]))
@@ -88,7 +63,7 @@ class DemoAjax extends Component {
         item.get('id') + ' - ' + item.get('name')
       )
     )
-    this._closeSearch()
+    this._closeSearch1()
   }
 
   _reset = () => {
@@ -98,7 +73,7 @@ class DemoAjax extends Component {
     dispatch(actions.change('formState.student_name', ''))
   }
 
-  _renderResults() {
+  _renderResults1() {
     const searchResults = this.props.__student.get('searchResults')
     if (!searchResults || searchResults.size === 0) {
       return null
@@ -123,17 +98,12 @@ class DemoAjax extends Component {
     )
   }
 
-  render() {
-    const { openSearch } = this.state
+  _renderForm1() {
+    const { openSearch1 } = this.state
     const searching = this.props.__student.get('searching')
 
     return (
-      <Form
-        model="formState"
-        onSubmit={this._onSubmit}
-        className="tforms"
-        validators={validators}
-      >
+      <Form model="formState" onSubmit={this._onSubmit1} className="tforms">
         <Fieldset legend="AJAX Form">
           <ThisComponent
             model0="formState.student_id"
@@ -141,28 +111,37 @@ class DemoAjax extends Component {
             model2="formState.student_name"
             label1="Student ID"
             label2="Student Name"
-            openSearch={this._openSearch}
-            onInputSearch={this._onDirectSearch}
+            openSearch={this._openSearch1}
+            onInputSearch={this._onDirectSearch1}
             searching={searching}
             autoFocus
             required
           >
             <SearchModal
               model="searchState"
-              isOpen={openSearch}
+              isOpen={openSearch1}
               searching={searching}
               placeholder="Search Item..."
-              onClose={this._closeSearch}
-              onSubmit={this._onSearch}
+              onClose={this._closeSearch1}
+              onSubmit={this._onSearch1}
             >
-              {this._renderResults()}
+              {this._renderResults1()}
             </SearchModal>
           </ThisComponent>
         </Fieldset>
-        <button type="submit" className="btn btn-info">
-          Submit
-        </button>
       </Form>
+    )
+  }
+
+  render() {
+    return (
+      <div className="row">
+        <div className="col-sm-6 col-sm-offset-3">
+          <h1>bisu-react-row-search Demo</h1>
+          <hr />
+          {this._renderForm1()}
+        </div>
+      </div>
     )
   }
 }
@@ -173,6 +152,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(DemoAjax)
-
-```
+export default connect(mapStateToProps)(Demo)
