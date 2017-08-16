@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Row, Field } from 'tforms'
 import { Input } from 'bisu-react-input'
 import errBlock from 'bisu-react-input/lib/err-block'
-import InputGroup, { Button as IButton } from 'react-bootstrap/lib/InputGroup'
 import { Control } from 'react-redux-form/immutable'
 import SearchIcon from 'react-icons/lib/md/search'
 import ThreeBounce from 'better-react-spinkit/dist/ThreeBounce'
@@ -66,8 +65,8 @@ class BisuReactRowSearch extends Component {
             <label htmlFor={model1}>
               {label1} {required && <span className="req">*</span>}
             </label>
-            <InputGroup>
-              <IButton>
+            <div className="input-group">
+              <span className="input-group-btn">
                 <button
                   type="button"
                   tabIndex="-1"
@@ -83,7 +82,7 @@ class BisuReactRowSearch extends Component {
                       />
                     : <SearchIcon />}
                 </button>
-              </IButton>
+              </span>
               <Control.text
                 model={model1}
                 className="form-control"
@@ -94,7 +93,7 @@ class BisuReactRowSearch extends Component {
                 autoFocus={autoFocus}
               />
               {errBlock(model0)}
-            </InputGroup>
+            </div>
           </div>
         </Field>
         <Field span="3" data-disabled="true" className="display">

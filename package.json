@@ -1,15 +1,10 @@
 {
   "name": "bisu-react-row-search",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "bisu-react-row-search React component",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "files": [
-    "css",
-    "es",
-    "lib",
-    "umd"
-  ],
+  "files": ["css", "es", "lib", "umd"],
   "scripts": {
     "build": "nwb build-react-component --copy-files",
     "clean": "nwb clean-module && npm clean-demo",
@@ -19,18 +14,17 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "bisu-react-input": "1.0.5",
-    "bisu-react-modal": "1.0.9",
-    "bisu-react-search-modal": "1.0.5",
-    "react-bootstrap": "0.31.2",
-    "tforms": "1.0.3",
+    "bisu-react-input": "1.0.6",
+    "bisu-react-modal": "1.0.11",
+    "bisu-react-search-modal": "1.0.7",
+    "tforms": "1.0.4",
     "validator": "8.0.0"
   },
   "peerDependencies": {},
   "devDependencies": {
     "axios": "0.16.2",
     "babel-eslint": "7.2.3",
-    "bootstrap-sass": "3.3.7",
+    "bootstrap": "4.0.0-beta",
     "eslint": "3.19.0",
     "eslint-config-react-app": "1.0.5",
     "eslint-plugin-flowtype": "2.33.0",
@@ -55,7 +49,5 @@
   "homepage": "",
   "license": "MIT",
   "repository": "https://github.com/bisudev/bisu-react-row-search.git",
-  "keywords": [
-    "react-component"
-  ]
+  "keywords": ["react-component"]
 }

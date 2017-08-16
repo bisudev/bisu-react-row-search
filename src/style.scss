@@ -8,7 +8,7 @@
       padding-right: 10px;
       outline: 0;
       background-color: transparent;
-      color: $gray-light;
+      color: $gray-500;
       display: block;
       margin-top: -15px;
 
@@ -18,7 +18,7 @@
 
       &:focus:enabled,
       &:hover:enabled {
-        color: #000;
+        color: $gray-600;
       }
       &:active:enabled {
         transform: translateY(1px);
@@ -27,6 +27,6 @@
   }
 
   .display .form-control {
-    color: $brand-primary;
+    color: $cyan;
   }
 }

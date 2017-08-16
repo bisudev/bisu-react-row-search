@@ -9,7 +9,11 @@ class SearchResultItem extends Component {
   render() {
     const { item } = this.props
     return (
-      <button onClick={this._onSelectItem} className="list-group-item">
+      <button
+        type="button"
+        onClick={this._onSelectItem}
+        className="list-group-item list-group-item-action"
+      >
         <ResultSpan>
           {item.get('id')}
         </ResultSpan>

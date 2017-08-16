@@ -6,15 +6,17 @@ import DemoDisabled from './demo-disabled'
 import './demo.scss'
 
 const Demo = () =>
-  <div className="row">
-    <div className="col-sm-6 col-sm-offset-3">
-      <h1>bisu-react-row-search Demo</h1>
-      <hr />
-      <DemoAjax />
-      <hr />
-      <DemoOffline />
-      <hr />
-      <DemoDisabled />
+  <div className="container">
+    <div className="row justify-content-md-center">
+      <div className="col-sm-6 col-sm-offset-3">
+        <h1>bisu-react-row-search Demo</h1>
+        <hr />
+        <DemoAjax />
+        <hr />
+        <DemoOffline />
+        <hr />
+        <DemoDisabled />
+      </div>
     </div>
   </div>
 
