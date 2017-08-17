@@ -1,6 +1,6 @@
 {
   "name": "bisu-react-row-search",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "bisu-react-row-search React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -19,11 +19,11 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "bisu-react-input": "1.0.5",
-    "bisu-react-modal": "1.0.9",
-    "bisu-react-search-modal": "1.0.5",
+    "bisu-react-input": "1.0.7",
+    "bisu-react-modal": "1.0.12",
+    "bisu-react-search-modal": "1.0.8",
     "react-bootstrap": "0.31.2",
-    "tforms": "1.0.3",
+    "tforms": "1.0.5",
     "validator": "8.0.0"
   },
   "peerDependencies": {},

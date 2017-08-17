@@ -1161,33 +1161,25 @@ binary-extensions@^1.0.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.9.0.tgz#66506c16ce6f4d6928a5b3cd6a33ca41e941e37b"
 
-bisu-react-input@1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/bisu-react-input/-/bisu-react-input-1.0.5.tgz#4947a8e429bf666954326aad309b809dca66758c"
+bisu-react-input@1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/bisu-react-input/-/bisu-react-input-1.0.7.tgz#7bd00f60251cbc4402154522b03758c2805264b3"
 
-bisu-react-modal@1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/bisu-react-modal/-/bisu-react-modal-1.0.8.tgz#8f3c53ff08a3719c9de81b9a3f39fd397095d3e8"
-  dependencies:
-    classnames "2.2.5"
-    react-draggable "2.2.6"
-    react-icons "2.2.5"
-
-bisu-react-modal@1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/bisu-react-modal/-/bisu-react-modal-1.0.9.tgz#e57537907389b90d727966ae1ee0394bd08d1431"
+bisu-react-modal@1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/bisu-react-modal/-/bisu-react-modal-1.0.12.tgz#854546323ee427d405cf9749606d02ba58444aa3"
   dependencies:
     classnames "2.2.5"
     react-draggable "2.2.6"
     react-icons "2.2.5"
     react-modal "2.2.4"
 
-bisu-react-search-modal@1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/bisu-react-search-modal/-/bisu-react-search-modal-1.0.5.tgz#0a3a8387435588b2516387348073e85355d1cf99"
+bisu-react-search-modal@1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/bisu-react-search-modal/-/bisu-react-search-modal-1.0.8.tgz#61b0702106ac29d4c99bfbd43bbbacd7474e4ae0"
   dependencies:
     better-react-spinkit "2.0.0"
-    bisu-react-modal "1.0.9"
+    bisu-react-modal "1.0.12"
     classnames "2.2.5"
     react-draggable "2.2.6"
     react-icons "2.2.5"
@@ -6987,9 +6979,9 @@ text-table@~0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
 
-tforms@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/tforms/-/tforms-1.0.3.tgz#694def2167357393cf1a887a2c73b8001124d1cd"
+tforms@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/tforms/-/tforms-1.0.5.tgz#a55ab2e002ef90b00e8524df493f5e71c2843d11"
   dependencies:
     classnames "2.2.5"
 
